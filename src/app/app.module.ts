@@ -2,19 +2,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ScenarioOneComponent } from './scenario-one/scenario-one.component';
+import { ScenarioTwoComponent } from './scenario-two/scenario-two.component';
+import { JobComponent } from './scenario-one/job.component';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScenarioOneComponent,
+    ScenarioTwoComponent,
+    JobComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
