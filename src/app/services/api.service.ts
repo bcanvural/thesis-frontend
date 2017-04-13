@@ -23,13 +23,15 @@ export class ApiService {
                  .toPromise()
                  .then(response => response.json().response as Job)
                  .catch(this.handleError);
-     }
+        }
 
-     getSkill(name: string): Observable<Skill> {
-         const url = `${this.baseUrl}/skill/${name}`;
+     getSkill(term: string): Promise<Skill> {
+         const url = `${this.baseUrl}/skill/${term}`;
          return this.http
              .get(url)
-             .map(response => response.json().response as Skill);
-  }
+             .toPromise()
+             .then(response => response.json().response as Skill)
+             .catch(this.handleError);
+         }
 
 }

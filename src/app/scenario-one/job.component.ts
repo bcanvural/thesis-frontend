@@ -15,7 +15,6 @@ export class JobComponent {
     getJob(jobid: string): void {
         this.apiService.getJob(jobid)
         .then(job => {
-            console.log(job.description);
             this.jobDescription = job.description !== undefined ? job.description : `No job with id ${jobid} found.`;
         })
     }

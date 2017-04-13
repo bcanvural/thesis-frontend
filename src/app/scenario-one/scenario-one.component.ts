@@ -7,5 +7,5 @@ import { Component } from '@angular/core'
 })
 
 export class ScenarioOneComponent {
- 
+    title = 'Scenario 1';
 }

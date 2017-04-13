@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">Enter skill names:</div>
+  <div class="panel-heading">Enter skill names</div>
   <table class="table">
     <thead>
       <tr>
@@ -12,7 +12,10 @@
     <tbody>
       <tr *ngFor="let skill of skills; let i = index">
         <th scope="row" class="skill-row">{{i+1}}</th>
-        <td><input type="text" class="form-control" placeholder="Enter skill name..." [(ngModel)]="skill.skillName" /></td>
+        <td>
+          <input type="text" #searchBox class="form-control" placeholder="Enter skill name..."
+           (keyup.enter)="getSkill(searchBox.value, i)" [(ngModel)]="inputValues[i]" myFocus [attr.index]="i"/>
+        </td>
         <td>{{skill.category}}</td>
         <td>{{skill.catid}}</td>
       </tr>

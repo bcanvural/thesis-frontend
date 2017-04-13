@@ -1,5 +1,5 @@
 export class Skill {
-    skillName: string;
+    skillName: string = "";
     catid: number;
     category: string;
 }
