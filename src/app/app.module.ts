@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ScenarioOneComponent } from './scenario-one/scenario-one.component';
 import { ScenarioTwoComponent } from './scenario-two/scenario-two.component';
 import { JobComponent } from './scenario-one/job.component';
+import { SkillsComponent } from './scenario-one/skills.component';
 import { ApiService } from './services/api.service';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ApiService } from './services/api.service';
     AppComponent,
     ScenarioOneComponent,
     ScenarioTwoComponent,
-    JobComponent
+    JobComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,

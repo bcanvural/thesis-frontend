@@ -1,0 +1,21 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Enter skill names:</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Skill name</th>
+        <th>Category</th>
+        <th>Category id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let skill of skills; let i = index">
+        <th scope="row" class="skill-row">{{i+1}}</th>
+        <td><input type="text" class="form-control" placeholder="Enter skill name..." [(ngModel)]="skill.skillName" /></td>
+        <td>{{skill.category}}</td>
+        <td>{{skill.catid}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

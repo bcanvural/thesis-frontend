@@ -19,4 +19,5 @@ export class JobComponent {
             this.jobDescription = job.description !== undefined ? job.description : `No job with id ${jobid} found.`;
         })
     }
+
 }
