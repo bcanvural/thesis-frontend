@@ -3,12 +3,7 @@ import { Skill } from './skill'
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { ApiService } from '../services/api.service';
-import { FormControl } from '@angular/forms';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
+
 import { FocusDirective } from './focus.directive';
 import { ViewChildren } from '@angular/core';
 
