@@ -1,24 +1,45 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">Enter skill names</div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Skill name</th>
-        <th>Category</th>
-        <th>Category id</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let skill of skills; let i = index">
-        <th scope="row" class="skill-row">{{i+1}}</th>
-        <td>
-          <input type="text" #searchBox class="form-control" placeholder="Enter skill name..."
-           (keyup.enter)="getSkill(searchBox.value, i)" [(ngModel)]="inputValues[i]" myFocus [attr.index]="i"/>
-        </td>
-        <td>{{skill.category}}</td>
-        <td>{{skill.catid}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+    </span>
+    </div>
+    <div class="search-container">
+      <div *ngFor="let rec of recomendedSkills | async" (click)="recSelected(rec)" class="search-result">
+        {{rec.skillName}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Skills</div>
+      <div class="panel-body" *ngIf="!showTable">
+        {{noSkillsText}}
+      </div>
+      <table class="table" *ngIf="showTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Skill name</th>
+            <th>Category</th>
+            <th>Category id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let skill of skills; let i = index">
+            <th scope="row" class="skill-row">{{i+1}}</th>
+            <td>{{skill.skillName}}</td>
+            <td>{{skill.category}}</td>
+            <td>{{skill.catid}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </div>

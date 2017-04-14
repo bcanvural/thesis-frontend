@@ -34,4 +34,14 @@ export class ApiService {
              .catch(this.handleError);
          }
 
+     searchSkill(term: string): Observable<Skill[]> {
+         const url = `${this.baseUrl}/skillrec?q=${term}`
+         return this.http
+            .get(url)
+            .map(response => {
+                return response.json().response as Skill[]
+            });
+     }
+
+
 }

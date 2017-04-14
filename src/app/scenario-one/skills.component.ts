@@ -4,8 +4,13 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { ApiService } from '../services/api.service';
 
-import { FocusDirective } from './focus.directive';
-import { ViewChildren } from '@angular/core';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/empty';
+// Observable operators
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'skills',
@@ -16,27 +21,38 @@ import { ViewChildren } from '@angular/core';
 export class SkillsComponent implements OnInit{
     private SKILL_NUM = 5;
     skills: Skill[] = new Array<Skill>();
-    inputValues: string[] = new Array<string>();
-    @ViewChildren(FocusDirective) vc;
+    showTable: boolean = false;
+    noSkillsText: string = 'No skills added yet.';
+    recomendedSkills: Observable<Skill[]>;
+    private searchTerms = new Subject<string>();
+
     constructor(private apiService: ApiService){}
+
     ngOnInit(){
         for(var i=0; i<this.SKILL_NUM; i++){
             this.skills[i] = new Skill();
-            this.inputValues[i] = "";
         }
+        this.recomendedSkills = this.searchTerms
+            .debounceTime(300)
+            .distinctUntilChanged()
+            .switchMap(term => {
+            if (term.length >= 3) {
+                 return this.apiService.searchSkill(term);
+            } else {
+                return Observable.of<Skill[]>([])
+            }
+    })
+      .catch(error => {
+        console.log(error);
+        return Observable.of<Skill[]>([]);
+      });
     }
-    getSkill(skillName: string, index: number): void {
-        this.apiService.getSkill(skillName)
-        .then(skill => {
-            this.inputValues[index] = skillName;
-             if(skill.catid !== undefined) {
-                this.skills[index] = skill
-                this.vc.forEach(dir => {
-                    if (dir.el.nativeElement.getAttribute('index') == (index+1)){
-                        dir.focus();
-                    }
-                })
-             }
-        });
+
+    recSelected(rec: Skill): void{
+        console.log('rec selected');
+    }
+
+    recSkills(term: string): void {
+        this.searchTerms.next(term);
     }
 }
