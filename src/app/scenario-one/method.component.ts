@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class MethodComponent {
-    methods : string[] = ['tfidf', 'tfidf2', 'countvectorizer', 'word2vec'];
+    methods : string[] = ['TF-IDF', 'TF-IDF2', 'Countvectorizer', 'Word2vec'];
     unchecked: string = 'fa fa-circle-o fa-2x';
     checked: string = 'fa fa-check-circle-o fa-2x'
     checkedClass: string;
@@ -18,14 +18,12 @@ export class MethodComponent {
     onClick(method: string, i: number){
         if(this.radioClasses[i] === this.checked){
             this.resetRadioClasses();
-            this.radioClasses[i] = this.unchecked;
         } else {
             this.resetRadioClasses();
             this.radioClasses[i] = this.checked;
         }
     }
     resetRadioClasses(){
-        this.radioClasses = [this.unchecked, this.unchecked, this.unchecked, this.unchecked];
+        this.radioClasses = Array(this.methods.length).fill(this.unchecked);
     }
-
 }

@@ -4,10 +4,9 @@
       <div class="panel-heading">Featurization Method</div>
       <div class="panel-body">
         <div class="btn-group" data-toggle="buttons">
-          <label class="btn" *ngFor="let i of [0,1,2,3,4]">
-              <input type="radio" name="sameName" (click)="onClick(method, i)">
+          <label class="btn" *ngFor="let method of methods; let i = index" (click)="onClick(method, i)">
                <i class="{{radioClasses[i]}}"></i>
-               <span>{{methods[i]}}</span>
+               <span>{{method}}</span>
              </label>
         </div>
       </div>
