@@ -1,21 +1,22 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="input-group">
-      <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)">
+      <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)"
+      (keyup.enter)="addSkill(searchBox.value)" [(ngModel)]="inputValue">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button class="btn btn-default" type="button" (click)="addSkill(searchBox.value)">Go!</button>
     </span>
     </div>
-    <div class="search-container">
-      <div *ngFor="let rec of recomendedSkills | async" (click)="recSelected(rec)" class="search-result">
-        {{rec.skillName}}
-      </div>
+    <div class="search-container" [hidden]="hideSearch">
+        <div *ngFor="let rec of recomendedSkills | async" (click)="recSelected(rec)" class="search-result">
+          {{rec.skillName}}
+        </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-8">
     <div class="panel panel-primary">
       <div class="panel-heading">Skills</div>
       <div class="panel-body" *ngIf="!showTable">
@@ -39,7 +40,6 @@
           </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 </div>

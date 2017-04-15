@@ -35,3 +35,11 @@ td {
   /*background-color: #607D8B;*/
   background-color: #337ab7;
 }
+
+.hide {
+    display: none;
+}
+
+.panel.panel-primary{
+    margin-bottom:32px;
+}

@@ -6,7 +6,6 @@ import { ApiService } from '../services/api.service';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/empty';
-// Observable operators
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -24,21 +23,24 @@ export class SkillsComponent implements OnInit{
     showTable: boolean = false;
     noSkillsText: string = 'No skills added yet.';
     recomendedSkills: Observable<Skill[]>;
+    inputValue: string = '';
+    hideSearch: boolean = true;
     private searchTerms = new Subject<string>();
 
     constructor(private apiService: ApiService){}
 
     ngOnInit(){
-        for(var i=0; i<this.SKILL_NUM; i++){
-            this.skills[i] = new Skill();
-        }
         this.recomendedSkills = this.searchTerms
             .debounceTime(300)
             .distinctUntilChanged()
             .switchMap(term => {
-            if (term.length >= 3) {
+            if (term.length >= 1) {
+                 if(this.inputValue.length > 0){
+                     this.hideSearch = false;
+                 }
                  return this.apiService.searchSkill(term);
             } else {
+                this.hideSearch = true;
                 return Observable.of<Skill[]>([])
             }
     })
@@ -48,8 +50,22 @@ export class SkillsComponent implements OnInit{
       });
     }
 
+    addSkill(skillName: string): void {
+        this.apiService.getSkill(skillName)
+        .then(skill => {
+            this.skills.push(skill as Skill);
+            this.showTable = true;
+            this.inputValue = "";
+            this.hideSearch = true;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     recSelected(rec: Skill): void{
-        console.log('rec selected');
+        this.inputValue = rec.skillName;
+        this.hideSearch = true;
     }
 
     recSkills(term: string): void {
