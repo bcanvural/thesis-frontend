@@ -3,7 +3,7 @@ td {
   padding: 0;
 }
 
-.skill-row {
+.skill-row-index {
   vertical-align: inherit;
 }
 
@@ -42,4 +42,13 @@ td {
 
 .panel.panel-primary{
     margin-bottom:32px;
+}
+
+.skill-remove-btn {
+    float:right;
+}
+
+.skill-row {
+    vertical-align: -webkit-baseline-middle;
+
 }

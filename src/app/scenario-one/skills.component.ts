@@ -24,6 +24,7 @@ export class SkillsComponent implements OnInit{
     noSkillsText: string = 'No skills added yet.';
     recomendedSkills: Observable<Skill[]>;
     inputValue: string = '';
+    inputDisabled: boolean = false;
     hideSearch: boolean = true;
     private searchTerms = new Subject<string>();
 
@@ -53,10 +54,21 @@ export class SkillsComponent implements OnInit{
     addSkill(skillName: string): void {
         this.apiService.getSkill(skillName)
         .then(skill => {
-            this.skills.push(skill as Skill);
-            this.showTable = true;
-            this.inputValue = "";
-            this.hideSearch = true;
+            if (skill.catid !== undefined){
+                var duplicate = false;
+                this.skills.forEach(el => {
+                    if (el.catid == skill.catid){
+                        duplicate = true;
+                    }
+                });
+            if (!duplicate){
+                this.skills.push(skill as Skill);
+                this.showTable = true;
+                this.inputValue = "";
+                this.hideSearch = true;
+                this.inputDisabled = this.skills.length == this.SKILL_NUM ? true : false;
+            }
+        }
         })
         .catch(error => {
             console.log(error);
@@ -70,5 +82,13 @@ export class SkillsComponent implements OnInit{
 
     recSkills(term: string): void {
         this.searchTerms.next(term);
+    }
+    removeSkill(skill: Skill): void{
+        this.skills.forEach((el, index) => {
+            if (el.catid == skill.catid){
+                this.skills.splice(index ,1)
+                this.inputDisabled = this.inputDisabled ? false : this.inputDisabled;
+            }
+        })
     }
 }

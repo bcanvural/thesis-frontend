@@ -2,7 +2,7 @@
   <div class="col-lg-6">
     <div class="input-group">
       <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)"
-      (keyup.enter)="addSkill(searchBox.value)" [(ngModel)]="inputValue">
+      (keyup.enter)="addSkill(searchBox.value)" [(ngModel)]="inputValue" [disabled]="inputDisabled">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" (click)="addSkill(searchBox.value)">Go!</button>
     </span>
@@ -33,10 +33,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let skill of skills; let i = index">
-            <th scope="row" class="skill-row">{{i+1}}</th>
-            <td>{{skill.skillName}}</td>
-            <td>{{skill.category}}</td>
-            <td>{{skill.catid}}</td>
+            <th scope="row" class="skill-row-index">{{i+1}}</th>
+            <td><span class="skill-row">{{skill.skillName}}</span>
+                <button class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
+            <td><span class="skill-row">{{skill.category}}</span></td>
+            <td><span class="skill-row">{{skill.catid}}</span></td>
           </tr>
         </tbody>
       </table>
