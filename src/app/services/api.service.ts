@@ -43,5 +43,16 @@ export class ApiService {
             });
      }
 
-
+     getGraphData(jobid: number, method: string, skills: Array<Skill>): Promise<any>{
+         const url = `${this.baseUrl}/graph`;
+         return this.http
+            .post(url, {jobid: jobid, method: method, cat_id_1: skills[0].catid,
+            cat_id_2: skills[1].catid, cat_id_3: skills[2].catid,
+            cat_id_4: skills[3].catid, cat_id_5: skills[4].catid})
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError);
+     }
 }

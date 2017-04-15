@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     styleUrls: ['./method.component.css'],
@@ -7,20 +7,23 @@ import { Component } from '@angular/core';
 })
 
 export class MethodComponent {
-    methods : string[] = ['TF-IDF', 'TF-IDF2', 'Countvectorizer', 'Word2vec'];
+    methods : string[] = ['tfidf', 'tfidf2', 'countvectorizer', 'word2vec'];
     unchecked: string = 'fa fa-circle-o fa-2x';
     checked: string = 'fa fa-check-circle-o fa-2x'
     checkedClass: string;
     radioClasses: Array<string>;
+    @Output() onMethodChange = new EventEmitter<string>();
     constructor(){
         this.resetRadioClasses();
     }
     onClick(method: string, i: number){
         if(this.radioClasses[i] === this.checked){
             this.resetRadioClasses();
+            this.onMethodChange.emit("");
         } else {
             this.resetRadioClasses();
             this.radioClasses[i] = this.checked;
+            this.onMethodChange.emit(this.methods[i]);
         }
     }
     resetRadioClasses(){

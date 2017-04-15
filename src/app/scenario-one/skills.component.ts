@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { Skill } from './skill'
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -27,6 +27,7 @@ export class SkillsComponent implements OnInit{
     inputDisabled: boolean = false;
     hideSearch: boolean = true;
     private searchTerms = new Subject<string>();
+    @Output() onSkillChange = new EventEmitter<Array<Skill>>();
 
     constructor(private apiService: ApiService){}
 
@@ -67,6 +68,7 @@ export class SkillsComponent implements OnInit{
                 this.inputValue = "";
                 this.hideSearch = true;
                 this.inputDisabled = this.skills.length == this.SKILL_NUM ? true : false;
+                this.onSkillChange.emit(this.skills);
             }
         }
         })
@@ -88,6 +90,7 @@ export class SkillsComponent implements OnInit{
             if (el.catid == skill.catid){
                 this.skills.splice(index ,1)
                 this.inputDisabled = this.inputDisabled ? false : this.inputDisabled;
+                this.onSkillChange.emit(this.skills);
             }
         })
     }

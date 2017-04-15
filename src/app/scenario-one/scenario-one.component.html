@@ -9,14 +9,17 @@
       </div>
     </div>
   </div>
-  <job></job>
-  <method></method>
-  <skills></skills>
+  <job (onJobChange)="onJobChange($event)"></job>
+  <method (onMethodChange)="onMethodChange($event)"></method>
+  <skills (onSkillChange)="onSkillChange($event)"></skills>
 
   <div class="panel panel-primary">
     <div class="panel-heading">Radar Charts</div>
     <div class="panel-body">
-         <button class="btn btn-success" (click)="onClick()">Graph!</button>
+        <div [hidden]="readyToDraw">
+            {{notEnoughParametersStr}}
+        </div>
+        <div [hidden]="!readyToDraw">
         <div class="row">
           <div class="col-md-6">
             <canvas id="mychart" width="200" height="200"></canvas>
@@ -38,6 +41,7 @@
             <canvas id="mychart5" width="200" height="200"></canvas>
           </div>
         </div>
+    </div>
     </div>
   </div>
 
