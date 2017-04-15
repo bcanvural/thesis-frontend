@@ -16,10 +16,10 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Radar Charts</div>
     <div class="panel-body">
-        <div [hidden]="readyToDraw">
+        <div [hidden]="displayGraph">
             {{notEnoughParametersStr}}
         </div>
-        <div [hidden]="!readyToDraw">
+        <div [hidden]="!displayGraph">
         <div class="row">
           <div class="col-md-6">
             <canvas id="mychart" width="200" height="200"></canvas>
