@@ -10,7 +10,7 @@ import { ApiService } from '../services/api.service';
 export class JobComponent {
     constructor(private apiService: ApiService){}
     jobPanelHeading = 'Job description'
-    jobDescription = 'Job description will be here';
+    jobDescription: string;
     @Output() onJobChange = new EventEmitter<number>();
     getJob(jobid: string): void {
         this.apiService.getJob(jobid)

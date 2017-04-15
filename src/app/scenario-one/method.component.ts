@@ -8,8 +8,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 export class MethodComponent {
     methods : string[] = ['tfidf', 'tfidf2', 'countvectorizer', 'word2vec'];
-    unchecked: string = 'fa fa-circle-o fa-2x';
-    checked: string = 'fa fa-check-circle-o fa-2x'
+    unchecked: string = 'fa fa-circle-o fa-x';
+    checked: string = 'fa fa-check-circle-o fa-x'
     checkedClass: string;
     radioClasses: Array<string>;
     @Output() onMethodChange = new EventEmitter<string>();

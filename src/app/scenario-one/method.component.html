@@ -1,15 +1,7 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Featurization Method</div>
-      <div class="panel-body">
+
         <div class="btn-group" data-toggle="buttons">
           <label class="btn" *ngFor="let method of methods; let i = index" (click)="onClick(method, i)">
                <i class="{{radioClasses[i]}}"></i>
                <span>{{method}}</span>
              </label>
         </div>
-      </div>
-    </div>
-  </div>
-</div>

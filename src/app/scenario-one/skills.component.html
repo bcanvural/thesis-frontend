@@ -1,46 +1,38 @@
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-md-4">
     <div class="input-group">
-      <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)"
-      (keyup.enter)="addSkill(searchBox.value)" [(ngModel)]="inputValue" [disabled]="inputDisabled">
+      <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)" (keyup.enter)="addSkill(searchBox.value)" [(ngModel)]="inputValue" [disabled]="inputDisabled">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" (click)="addSkill(searchBox.value)">Go!</button>
+        <button class="btn btn-success" type="button" (click)="addSkill(searchBox.value)">Go!</button>
     </span>
     </div>
     <div class="search-container" [hidden]="hideSearch">
-        <div *ngFor="let rec of recomendedSkills | async" (click)="recSelected(rec)" class="search-result">
-          {{rec.skillName}}
-        </div>
+      <div *ngFor="let rec of recomendedSkills | async" (click)="recSelected(rec)" class="search-result">
+        {{rec.skillName}}
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Skills</div>
-      <div class="panel-body" *ngIf="!showTable">
-        {{noSkillsText}}
-      </div>
-      <table class="table" *ngIf="showTable">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Skill name</th>
-            <th>Category</th>
-            <th>Category id</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let skill of skills; let i = index">
-            <th scope="row" class="skill-row-index">{{i+1}}</th>
-            <td><span class="skill-row">{{skill.skillName}}</span>
-                <button class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
-            <td><span class="skill-row">{{skill.category}}</span></td>
-            <td><span class="skill-row">{{skill.catid}}</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div *ngIf="!showTable" class="well well-md">
+  <p>{{noSkillsText}}</p>
 </div>
+<table class="table" *ngIf="showTable">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Skill name</th>
+      <th>Category</th>
+      <th>Category id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let skill of skills; let i = index">
+      <th scope="row" class="skill-row-index">{{i+1}}</th>
+      <td><span class="skill-row">{{skill.skillName}}</span>
+        <button class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
+      <td><span class="skill-row">{{skill.category}}</span></td>
+      <td><span class="skill-row">{{skill.catid}}</span></td>
+    </tr>
+  </tbody>
+</table>
