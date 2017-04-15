@@ -4,32 +4,11 @@
       <div class="panel-heading">Featurization Method</div>
       <div class="panel-body">
         <div class="btn-group" data-toggle="buttons">
-          <label class="btn">
-              <input type="radio" name="sameName" (click)="onClick(method, 0)">
-               <i class="{{radioClasses[0]}}"></i>
-               <span>tfidf</span>
+          <label class="btn" *ngFor="let i of [0,1,2,3,4]">
+              <input type="radio" name="sameName" (click)="onClick(method, i)">
+               <i class="{{radioClasses[i]}}"></i>
+               <span>{{methods[i]}}</span>
              </label>
-          <label class="btn">
-                 <input type="radio" name="sameName" (click)="onClick(method, 1)">
-                  <i class="{{radioClasses[1]}}"></i>
-                  <span>tfidf2</span>
-                </label>
-          <label class="btn">
-                    <input type="radio" name="sameName" (click)="onClick(method, 2)">
-                     <!-- <i class="fa fa-circle-o fa-x"></i> -->
-
-                      <!-- <i class="fa fa-circle-o fa-x" myradio></i> -->
-                     <i class="{{radioClasses[2]}}"></i>
-                     <span>countvectorizer</span>
-                   </label>
-          <label class="btn">
-                       <input type="radio" name="sameName" (click)="onClick(method, 3)">
-                        <!-- <i class="fa fa-circle-o fa-x"></i> -->
-
-                         <!-- <i class="fa fa-circle-o fa-x" myradio></i> -->
-                        <i class={{radioClasses[3]}}></i>
-                        <span>tfidf</span>
-                      </label>
         </div>
       </div>
     </div>

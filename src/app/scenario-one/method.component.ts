@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class MethodComponent {
+    methods : string[] = ['tfidf', 'tfidf2', 'countvectorizer', 'word2vec'];
     unchecked: string = 'fa fa-circle-o fa-2x';
     checked: string = 'fa fa-check-circle-o fa-2x'
     checkedClass: string;
