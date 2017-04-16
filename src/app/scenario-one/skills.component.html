@@ -13,26 +13,31 @@
     </div>
   </div>
 </div>
-
-<div *ngIf="!showTable" class="well well-md">
-  <p>{{noSkillsText}}</p>
+<div class="row">
+  <div class="col-lg-6">
+    <div *ngIf="!showTable" class="well well-md">
+      <p>{{noSkillsText}}</p>
+    </div>
+  </div>
+  <div class="col-lg-8">
+  <table class="table" *ngIf="showTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Skill name</th>
+        <th>Category</th>
+        <th>Category id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let skill of skills; let i = index">
+        <th scope="row" class="skill-row-index">{{i+1}}</th>
+        <td><span class="skill-row">{{skill.skillName}}</span>
+          <button type="button" class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
+        <td><span class="skill-row">{{skill.category}}</span></td>
+        <td><span class="skill-row">{{skill.catid}}</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 </div>
-<table class="table" *ngIf="showTable">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Skill name</th>
-      <th>Category</th>
-      <th>Category id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let skill of skills; let i = index">
-      <th scope="row" class="skill-row-index">{{i+1}}</th>
-      <td><span class="skill-row">{{skill.skillName}}</span>
-        <button type="button" class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
-      <td><span class="skill-row">{{skill.category}}</span></td>
-      <td><span class="skill-row">{{skill.catid}}</span></td>
-    </tr>
-  </tbody>
-</table>
