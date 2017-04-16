@@ -53,28 +53,29 @@ export class SkillsComponent implements OnInit{
     }
 
     addSkill(skillName: string): void {
-        this.apiService.getSkill(skillName)
-        .then(skill => {
-            if (skill.catid !== undefined){
-                var duplicate = false;
-                this.skills.forEach(el => {
-                    if (el.catid == skill.catid){
-                        duplicate = true;
-                    }
-                });
-            if (!duplicate){
-                this.skills.push(skill as Skill);
-                this.showTable = true;
-                this.inputValue = "";
-                this.hideSearch = true;
-                this.inputDisabled = this.skills.length == this.SKILL_NUM ? true : false;
-                this.onSkillChange.emit(this.skills);
-            }
+        if (skillName){
+            this.apiService.getSkill(skillName)
+            .then(skill => {
+                if (skill.catid){
+                    var duplicate = false;
+                    this.skills.forEach(el => {
+                        if (el.catid == skill.catid){
+                            duplicate = true;
+                        }
+                    });
+                if (!duplicate){
+                    this.skills.push(skill as Skill);
+                    this.showTable = true;
+                    this.inputValue = "";
+                    this.hideSearch = true;
+                    this.inputDisabled = this.skills.length == this.SKILL_NUM;
+                    this.onSkillChange.emit(this.skills);
+                }
+            }})
+            .catch(error => {
+                console.log(error);
+            })
         }
-        })
-        .catch(error => {
-            console.log(error);
-        })
     }
 
     recSelected(rec: Skill): void{
@@ -89,7 +90,7 @@ export class SkillsComponent implements OnInit{
         this.skills.forEach((el, index) => {
             if (el.catid == skill.catid){
                 this.skills.splice(index ,1)
-                this.inputDisabled = this.inputDisabled ? false : this.inputDisabled;
+                this.inputDisabled = false;
                 this.onSkillChange.emit(this.skills);
             }
         })

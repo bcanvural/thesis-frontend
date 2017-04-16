@@ -30,7 +30,7 @@
     <tr *ngFor="let skill of skills; let i = index">
       <th scope="row" class="skill-row-index">{{i+1}}</th>
       <td><span class="skill-row">{{skill.skillName}}</span>
-        <button class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
+        <button type="button" class="btn btn-sm btn-danger skill-remove-btn" (click)="removeSkill(skill)">Remove</button></td>
       <td><span class="skill-row">{{skill.category}}</span></td>
       <td><span class="skill-row">{{skill.catid}}</span></td>
     </tr>
