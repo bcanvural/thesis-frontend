@@ -92,6 +92,7 @@ export class SkillsComponent implements OnInit{
                 this.skills.splice(index ,1)
                 this.inputDisabled = false;
                 this.onSkillChange.emit(this.skills);
+                this.showTable = !(this.skills.length == 0);
             }
         })
     }
