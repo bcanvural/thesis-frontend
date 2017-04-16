@@ -53,14 +53,14 @@ export class ScenarioOneComponent {
   drawGraph(json: any): void {
       var labels = [];
       this.skills.forEach(skill => labels.push(skill.skillName));
-      var jobid = json.job_sim.jobid;
-      var jobSimArr = [json.job_sim.cat_1_sim,  json.job_sim.cat_2_sim, json.job_sim.cat_3_sim, json.job_sim.cat_4_sim, json.job_sim.cat_5_sim];
-      json.cv_similarities.forEach((obj, index) => {
-          var cvSimArr = [obj.cat_1_sim, obj.cat_2_sim, obj.cat_3_sim, obj.cat_4_sim, obj.cat_5_sim];
-          if(this.charts.length < json.cv_similarities.length) {
-              this.charts[index] = new MyChart(this.ctxArr[index], labels, `CV ${obj.cvid}`, cvSimArr, `Job ${jobid}`, jobSimArr);
+      var jobid = json.job_diff.jobid;
+      var jobDiffArr = [json.job_diff.cat_1_diff,  json.job_diff.cat_2_diff, json.job_diff.cat_3_diff, json.job_diff.cat_4_diff, json.job_diff.cat_5_diff];
+      json.cv_differences.forEach((obj, index) => {
+          var cvDiffArr = [obj.cat_1_diff, obj.cat_2_diff, obj.cat_3_diff, obj.cat_4_diff, obj.cat_5_diff];
+          if(this.charts.length < json.cv_differences.length) {
+              this.charts[index] = new MyChart(this.ctxArr[index], labels, `CV ${obj.cvid}`, cvDiffArr, `Job ${jobid}`, jobDiffArr);
           } else {
-              this.charts[index].redrawGraph(this.ctxArr[index], labels, `CV ${obj.cvid}`, cvSimArr, `Job ${jobid}`, jobSimArr);
+              this.charts[index].redrawGraph(this.ctxArr[index], labels, `CV ${obj.cvid}`, cvDiffArr, `Job ${jobid}`, jobDiffArr);
           }
       })
   }
