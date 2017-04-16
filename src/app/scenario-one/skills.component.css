@@ -52,3 +52,7 @@ td {
     vertical-align: -webkit-baseline-middle;
 
 }
+
+.skill-table-container {
+    top: -33px;
+}

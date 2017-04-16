@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <div class="input-group">
       <input type="text" #searchBox class="form-control" placeholder="Search for a skill..." (keyup)="recSkills(searchBox.value)" (keyup.enter)="addSkill(searchBox.value)" [(ngModel)]="inputValue" [disabled]="inputDisabled">
       <span class="input-group-btn">
@@ -12,14 +12,13 @@
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-lg-6">
-    <div *ngIf="!showTable" class="well well-md">
-      <p>{{noSkillsText}}</p>
+
+  <div class="col-md-8">
+    <div *ngIf="!showTable">
+      <p><em>{{noSkillsText}}</em></p>
     </div>
   </div>
-  <div class="col-lg-8">
+  <div class="col-md-8 skill-table-container">
   <table class="table" *ngIf="showTable">
     <thead>
       <tr>
