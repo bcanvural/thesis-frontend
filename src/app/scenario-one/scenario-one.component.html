@@ -29,25 +29,21 @@
                 {{notEnoughParametersStr}}
               </div>
               <div [hidden]="!displayGraph">
-                <div class="row">
-                  <div class="col-md-6">
-                    <canvas id="mychart" width="200" height="200"></canvas>
+                <div *ngFor="let ctx of ctxArr; let i = index; let even = even; let last = last;">
+                  <div class="row" *ngIf="even">
+                    <div class="col-md-6">
+                      <canvas [id]="ctxArr[i]" width="200" height="200"></canvas>
+                    </div>
+                    <div *ngIf="even">
+                      <div class="col-md-6">
+                        <canvas [id]="ctxArr[i+1]" width="200" height="200"></canvas>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <canvas id="mychart2" width="200" height="200"></canvas>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <canvas id="mychart3" width="200" height="200"></canvas>
-                  </div>
-                  <div class="col-md-6">
-                    <canvas id="mychart4" width="200" height="200"></canvas>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <canvas id="mychart5" width="200" height="200"></canvas>
+                  <div class="row" *ngIf="last && !loadMoreHidden">
+                    <div class="col-md-4 col-md-offset-4">
+                      <button type="button" class="btn btn-primary btn-block load-more" (click)="loadMore()">Load more</button>
+                    </div>
                   </div>
                 </div>
               </div>
