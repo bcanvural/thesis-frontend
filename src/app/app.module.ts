@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TooltipModule } from "ngx-tooltip";
 
 import { AppComponent } from './app.component';
 import { ScenarioOneComponent } from './scenario-one/scenario-one.component';
@@ -28,7 +29,8 @@ import { ApiService } from './services/api.service';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TooltipModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

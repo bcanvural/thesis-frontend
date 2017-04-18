@@ -13,6 +13,11 @@ export class MethodComponent {
     checkedClass: string;
     radioClasses: Array<string>;
     @Output() onMethodChange = new EventEmitter<string>();
+    tooltipTexts = ['TFIDF \
+    measure among jobs, cvs, and categories seperately.'
+    , 'TFIDF measure among jobs, cvs, and categories all together.',
+     'TFIDF measure among jobs, cvs, and categories all together, using term frequency',
+     'Word2vec model with euclidian distance among document feature vectors'];
     constructor(){
         this.resetRadioClasses();
     }

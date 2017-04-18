@@ -74,3 +74,10 @@ box-shadow: none;
 .panel.panel-primary{
     margin-bottom: 32px;
 }
+
+.tooltip-innerhtml{
+    position:absolute;
+    width:100px;
+    height: 100px;
+    
+}
