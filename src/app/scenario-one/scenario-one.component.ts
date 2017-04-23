@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { MyChart } from './myChart';
+import { MyChart } from '../common-components/myChart';
 import { Skill } from './skill';
 import { ApiService } from '../services/api.service';
 
@@ -67,7 +67,6 @@ export class ScenarioOneComponent {
       json.cv_differences.forEach((obj, index) => {
           var cvDiffArr = [obj.cat_1_diff, obj.cat_2_diff, obj.cat_3_diff, obj.cat_4_diff, obj.cat_5_diff];
           var calculatedIndex = index + ((this.pagenum-1)*this.PAGESIZE);
-          setTimeout(function(){}, 5000);
           if(this.charts.length < this.ctxArr.length) {
               this.charts[calculatedIndex] = new MyChart(this.ctxArr[calculatedIndex], labels, `CV ${obj.cvid}`, cvDiffArr, `Job ${jobid}`, jobDiffArr);
           } else {

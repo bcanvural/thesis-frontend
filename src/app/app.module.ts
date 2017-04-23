@@ -9,9 +9,9 @@ import { TooltipModule } from "ngx-tooltip";
 import { AppComponent } from './app.component';
 import { ScenarioOneComponent } from './scenario-one/scenario-one.component';
 import { ScenarioTwoComponent } from './scenario-two/scenario-two.component';
-import { JobComponent } from './scenario-one/job.component';
+import { JobComponent } from './common-components/job.component';
 import { SkillsComponent } from './scenario-one/skills.component';
-import { MethodComponent } from './scenario-one/method.component';
+import { MethodComponent } from './common-components/method.component';
 
 import { ApiService } from './services/api.service';
 

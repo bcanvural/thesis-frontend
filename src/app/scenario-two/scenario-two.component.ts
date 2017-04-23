@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
     selector: 'scenario-two',
@@ -8,6 +8,24 @@ import { Component } from '@angular/core';
 })
 
 
-export class ScenarioTwoComponent {
-    title = 'Not yet implemented'
+export class ScenarioTwoComponent implements OnInit {
+    title = 'Scenario Two'
+    jobid: number;
+    method: string;
+    skills: Array<string>;
+
+    constructor(private apiService:ApiService){}
+
+    ngOnInit(){
+        
+    }
+
+    onJobChange(jobid: number): void {
+        this.jobid = jobid;
+        console.log('onJobChange');
+    }
+    onMethodChange(method: string): void {
+        this.method = method;
+        console.log('onMethodChange');
+    }
 }
