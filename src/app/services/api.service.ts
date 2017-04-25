@@ -1,7 +1,7 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Job } from '../scenario-one/job';
+import { Job } from '../common-components/job';
 import { Skill } from '../scenario-one/skill';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -55,4 +55,49 @@ export class ApiService {
             })
             .catch(this.handleError);
      }
+
+     getEdisonGraphData(jobid: number, method: string, pagenum: number): Promise<any> {
+         const url = `${this.baseUrl}/edisongraph`;
+         return this.http
+            .post(url, {jobid: jobid, method: method, pagenum: pagenum})
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError);
+     }
+
+     getEdisonSkills(): Promise<any> {
+         const url = `${this.baseUrl}/edisonskills`;
+         return this.http
+            .get(url)
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError)
+     }
+
+     getEdisonGraphCV(cvid: string, jobid:number, method: string): Promise<any> {
+         const url = `${this.baseUrl}/edisongraphcv`;
+         return this.http
+            .post(url, {jobid: jobid, cvid: cvid, method: method})
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError);
+     }
+
+     getCV(cvid: string){
+         const url = `${this.baseUrl}/cv/${cvid}`;
+         return this.http
+            .get(url)
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError);
+     }
+
 }

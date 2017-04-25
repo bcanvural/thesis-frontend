@@ -14,6 +14,7 @@ import { SkillsComponent } from './scenario-one/skills.component';
 import { MethodComponent } from './common-components/method.component';
 
 import { ApiService } from './services/api.service';
+import { CvDetailComponent } from './scenario-two/cv-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ApiService } from './services/api.service';
     ScenarioTwoComponent,
     JobComponent,
     SkillsComponent,
-    MethodComponent
+    MethodComponent,
+    CvDetailComponent
   ],
   imports: [
     BrowserModule,

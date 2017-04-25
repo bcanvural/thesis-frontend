@@ -1,0 +1,7 @@
+li[role="presentation"]:hover {
+    cursor: pointer;
+}
+
+.chart-row{
+    margin-top: 32px;
+}
