@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { MyChart } from '../common-components/myChart';
+import { CvDetailComponent } from './cv-detail.component';
 
 @Component({
     selector: 'scenario-two',
@@ -23,6 +24,7 @@ export class ScenarioTwoComponent {
     loadMoreHidden = false;
     cvTabActive = false;
     graphsAvailable = false;
+    @ViewChild(CvDetailComponent) cvDetail: CvDetailComponent;
     constructor(private apiService:ApiService){}
 
     onJobChange(jobid: number): void {
@@ -38,8 +40,8 @@ export class ScenarioTwoComponent {
         this.pagenum = 1;
         this.loadMoreHidden = false;
         this.ctxArr = this.ctxArr.slice(0, this.PAGESIZE);
+        this.cvDetail.reset();
         if(this.method && this.jobid){
-            console.log('ready to draw')
             this.apiService.getEdisonGraphData(this.jobid, this.method, this.pagenum)
                 .then(response => {
                     this.drawGraph(response);

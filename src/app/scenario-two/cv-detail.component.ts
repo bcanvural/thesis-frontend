@@ -15,7 +15,15 @@ export class CvDetailComponent {
   graphstr = "cv-detail";
   cvDescription: string;
   hideCvDescription = true;
+  hideGraph: boolean;
+  inputValue: string;
   constructor(private apiService: ApiService){}
+
+  reset(): void {
+      this.hideCvDescription = true;
+      this.hideGraph = true;
+      this.inputValue = "";
+  }
 
   getCV(cvid: string): void{
       this.apiService.getEdisonGraphCV(cvid, this.jobid, this.method)
@@ -23,6 +31,7 @@ export class CvDetailComponent {
           this.drawGraph(json);
           this.apiService.getCV(cvid).then(cv => this.cvDescription = cv.description)
           this.hideCvDescription = false;
+          this.hideGraph = false;
       }).catch(e => console.log(e));
   }
 
