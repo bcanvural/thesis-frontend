@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core'
-import { MyChart } from '../common-components/myChart';
-import { Skill } from './skill';
+import { MyChart } from '../classes/myChart';
+import { Skill } from '../classes/skill';
 import { ApiService } from '../services/api.service';
-import { CvDetailComponent } from '../scenario-two/cv-detail.component';
+import { CvDetailComponent } from '../cv-detail/cv-detail.component';
 
 @Component({
     selector: 'scenario-one',

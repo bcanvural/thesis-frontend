@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { MyChart } from '../common-components/myChart';
-import { Skill } from '../scenario-one/skill';
+import { MyChart } from '../classes/myChart';
+import { Skill } from '../classes/skill';
 
 @Component({
   selector: 'cv-detail',

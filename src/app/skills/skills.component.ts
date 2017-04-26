@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
-import { Skill } from './skill'
+import { Skill } from '../classes/skill'
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { ApiService } from '../services/api.service';

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { MyChart } from '../common-components/myChart';
-import { CvDetailComponent } from './cv-detail.component';
+import { MyChart } from '../classes/myChart';
+import { CvDetailComponent } from '../cv-detail/cv-detail.component';
 
 @Component({
     selector: 'scenario-two',
