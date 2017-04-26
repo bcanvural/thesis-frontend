@@ -26,6 +26,7 @@ export class ScenarioOneComponent {
     cvTabActive = false;
     graphsAvailable = false;
     @ViewChild(CvDetailComponent) cvDetail: CvDetailComponent;
+    page = "sc1";
     constructor(private apiService: ApiService){}
 
   onJobChange(jobid: number): void {
@@ -114,16 +115,13 @@ export class ScenarioOneComponent {
     }
 
     onTabChange(index: number){
-
        if(index == 0 && this.cvTabActive){
            this.cvTabActive = false;
            this.displayGraph = true;
        }
-
        if(index == 1 && !this.cvTabActive){
            this.cvTabActive = true;
            this.displayGraph = false;
        }
-
     }
 }

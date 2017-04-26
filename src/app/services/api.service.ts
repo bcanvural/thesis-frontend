@@ -89,6 +89,19 @@ export class ApiService {
             .catch(this.handleError);
      }
 
+     getSingleEdsionGraphCV(cvid: string, jobid:number, method: string, skills: Array<Skill>): Promise<any>{
+         const url = `${this.baseUrl}/singleedisongraphcv`;
+         return this.http
+            .post(url, {jobid: jobid, cvid: cvid, method: method, cat_id_1: skills[0].catid,
+                        cat_id_2: skills[1].catid, cat_id_3: skills[2].catid,
+                        cat_id_4: skills[3].catid, cat_id_5: skills[4].catid})
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError);
+     }
+
      getCV(cvid: string){
          const url = `${this.baseUrl}/cv/${cvid}`;
          return this.http

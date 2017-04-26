@@ -25,6 +25,7 @@ export class ScenarioTwoComponent {
     cvTabActive = false;
     graphsAvailable = false;
     @ViewChild(CvDetailComponent) cvDetail: CvDetailComponent;
+    page = "sc2"
     constructor(private apiService:ApiService){}
 
     onJobChange(jobid: number): void {
@@ -74,7 +75,6 @@ export class ScenarioTwoComponent {
                 this.charts[calculatedIndex].redrawGraph(this.ctxArr[calculatedIndex], labels, `CV ${obj.cvid}`, cvDiffArr, `Job ${this.jobid}`, jobDiffArr);
             }
         })
-
     }
 
     loadMore(): void {

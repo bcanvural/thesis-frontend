@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { MyChart } from '../common-components/myChart';
+import { Skill } from '../scenario-one/skill';
 
 @Component({
   selector: 'cv-detail',
@@ -11,6 +12,8 @@ export class CvDetailComponent {
 
   @Input() jobid: number;
   @Input() method: string;
+  @Input() page: string;
+  @Input() skills?: Array<Skill>;
   graph: MyChart;
   graphstr = "cv-detail";
   cvDescription: string;
@@ -26,13 +29,23 @@ export class CvDetailComponent {
   }
 
   getCV(cvid: string): void{
-      this.apiService.getEdisonGraphCV(cvid, this.jobid, this.method)
-      .then(json => {
-          this.drawGraph(json);
-          this.apiService.getCV(cvid).then(cv => this.cvDescription = cv.description)
-          this.hideCvDescription = false;
-          this.hideGraph = false;
-      }).catch(e => console.log(e));
+      if(this.page=='sc2'){
+          this.apiService.getEdisonGraphCV(cvid, this.jobid, this.method)
+          .then(json => {
+              this.drawGraph(json);
+              this.apiService.getCV(cvid).then(cv => this.cvDescription = cv.description)
+              this.hideCvDescription = false;
+              this.hideGraph = false;
+          }).catch(e => console.log(e));
+      }   else if(this.page == 'sc1'){
+          this.apiService.getSingleEdsionGraphCV(cvid, this.jobid, this.method, this.skills)
+            .then(json => {
+                this.drawGraph(json);
+                this.apiService.getCV(cvid).then(cv => this.cvDescription = cv.description)
+                this.hideCvDescription = false;
+                this.hideGraph = false;
+            })
+    }
   }
 
   drawGraph(json: any): void{

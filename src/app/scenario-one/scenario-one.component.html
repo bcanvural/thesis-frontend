@@ -37,7 +37,7 @@
                 <li role="presentation" [ngClass]="{'active': !cvTabActive}" (click)="onTabChange(0)"><a>Radar Charts</a></li>
                 <li role="presentation" [ngClass]="{'active': cvTabActive}"><a (click)="onTabChange(1)">CV Detail</a></li>
               </ul>
-              <cv-detail [hidden]="!cvTabActive" [jobid]="jobid" [method]="method"></cv-detail>
+              <cv-detail [hidden]="!cvTabActive" [jobid]="jobid" [method]="method" [page]="page" [skills]="skills"></cv-detail>
               <div [hidden]="!displayGraph">
                 <div *ngFor="let ctx of ctxArr; let i = index; let even = even; let last = last;">
                   <div class="row chart-row" *ngIf="even">
