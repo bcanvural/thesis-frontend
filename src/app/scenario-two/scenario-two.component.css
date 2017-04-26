@@ -1,3 +1,7 @@
+.load-more{
+    margin-top: 32px;
+}
+
 li[role="presentation"]:hover {
     cursor: pointer;
 }

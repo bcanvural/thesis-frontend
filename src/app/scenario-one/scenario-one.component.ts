@@ -1,7 +1,8 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { MyChart } from '../common-components/myChart';
 import { Skill } from './skill';
 import { ApiService } from '../services/api.service';
+import { CvDetailComponent } from '../scenario-two/cv-detail.component';
 
 @Component({
     selector: 'scenario-one',
@@ -22,6 +23,9 @@ export class ScenarioOneComponent {
     pagenum = 1;
     PAGESIZE = 6;
     loadMoreHidden = false;
+    cvTabActive = false;
+    graphsAvailable = false;
+    @ViewChild(CvDetailComponent) cvDetail: CvDetailComponent;
     constructor(private apiService: ApiService){}
 
   onJobChange(jobid: number): void {
@@ -43,11 +47,14 @@ export class ScenarioOneComponent {
      this.pagenum = 1;
      this.loadMoreHidden = false;
      this.ctxArr = this.ctxArr.slice(0, this.PAGESIZE);
+     this.cvDetail.reset();
      if (this.method && this.jobid && (this.skills && this.skills.length == this.SKILL_NUM) ) {
          this.apiService.getGraphData(this.jobid, this.method, this.skills, this.pagenum)
          .then(json => {
               this.drawGraph(json)
               this.displayGraph = true;
+              this.graphsAvailable = true;
+              this.cvTabActive = false;
          })
          .catch(error => {
              console.log(error);
@@ -56,6 +63,8 @@ export class ScenarioOneComponent {
 
      } else {
          this.displayGraph = false;
+         this.graphsAvailable = false;
+         this.cvTabActive = false;
      }
   }
 
@@ -102,5 +111,19 @@ export class ScenarioOneComponent {
           var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
           return v.toString(16);
       });
+    }
+
+    onTabChange(index: number){
+
+       if(index == 0 && this.cvTabActive){
+           this.cvTabActive = false;
+           this.displayGraph = true;
+       }
+
+       if(index == 1 && !this.cvTabActive){
+           this.cvTabActive = true;
+           this.displayGraph = false;
+       }
+
     }
 }

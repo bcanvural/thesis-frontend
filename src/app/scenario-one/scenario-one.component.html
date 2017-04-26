@@ -24,13 +24,23 @@
               <method (onMethodChange)="onMethodChange($event)"></method>
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Radar Charts</label>
-              <div [hidden]="displayGraph">
-                {{notEnoughParametersStr}}
+              <!-- <label for="formGroupExampleInput2">Radar Charts</label> -->
+              <div [hidden]="graphsAvailable">
+                <label for="formGroupExampleInput2">Radar Charts</label>
+                <div class="row">
+                  <div class="col-md-6">
+                    {{notEnoughParametersStr}}
+                  </div>
+                </div>
               </div>
+              <ul class="nav nav-tabs" [hidden]="!graphsAvailable">
+                <li role="presentation" [ngClass]="{'active': !cvTabActive}" (click)="onTabChange(0)"><a>Radar Charts</a></li>
+                <li role="presentation" [ngClass]="{'active': cvTabActive}"><a (click)="onTabChange(1)">CV Detail</a></li>
+              </ul>
+              <cv-detail [hidden]="!cvTabActive" [jobid]="jobid" [method]="method"></cv-detail>
               <div [hidden]="!displayGraph">
                 <div *ngFor="let ctx of ctxArr; let i = index; let even = even; let last = last;">
-                  <div class="row" *ngIf="even">
+                  <div class="row chart-row" *ngIf="even">
                     <div class="col-md-6">
                       <canvas [id]="ctxArr[i]" width="200" height="200"></canvas>
                     </div>
@@ -40,7 +50,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row" *ngIf="last && !loadMoreHidden">
+                  <div class="row chart-row" *ngIf="last && !loadMoreHidden">
                     <div class="col-md-4 col-md-offset-4">
                       <button type="button" class="btn btn-primary btn-block load-more" (click)="loadMore()">Load more</button>
                     </div>
