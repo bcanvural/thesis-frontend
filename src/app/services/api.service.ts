@@ -1,8 +1,8 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Job } from '../common-components/job';
-import { Skill } from '../scenario-one/skill';
+import { Job } from '../classes/job';
+import { Skill } from '../classes/skill';
 import { Observable }     from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 

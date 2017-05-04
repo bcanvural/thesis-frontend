@@ -15,6 +15,7 @@ import { MethodComponent } from './method/method.component';
 
 import { ApiService } from './services/api.service';
 import { CvDetailComponent } from './cv-detail/cv-detail.component';
+import { TEComponent } from './te/te.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CvDetailComponent } from './cv-detail/cv-detail.component';
     JobComponent,
     SkillsComponent,
     MethodComponent,
-    CvDetailComponent
+    CvDetailComponent,
+    TEComponent
   ],
   imports: [
     BrowserModule,
