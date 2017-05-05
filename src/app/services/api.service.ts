@@ -112,5 +112,15 @@ export class ApiService {
             })
             .catch(this.handleError);
      }
-
+     
+     getBarchartData(type: string, pagenum: number): Promise<any>{
+         const url = `${this.baseUrl}/barchart`;
+          return this.http
+            .post(url, {chart_type: type, pagenum: pagenum})
+            .toPromise()
+            .then(response => {
+                return response.json().response;
+            })
+            .catch(this.handleError);
+     }
 }
