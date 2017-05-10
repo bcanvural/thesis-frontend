@@ -36,7 +36,7 @@ export class TEComponent {
      var labels = []
           var values = []
           Object.keys(response).forEach(key => {
-            labels.push(response[key].labels.join(" "))
+            labels.push(response[key].labels.join(","))
             values.push(response[key].freq)
           })
           if (this.charts[index]) {
